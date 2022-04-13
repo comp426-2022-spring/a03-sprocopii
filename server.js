@@ -6,7 +6,7 @@ const args = minimist(process.argv.slice(2))
 
 //Port variable
 args['port']
-const port = args.port || process.env.PORT || 5000
+const port = args.port || process.env.PORT || 3000
 
 //Start an app server
 const server = app.listen(port, () => {
