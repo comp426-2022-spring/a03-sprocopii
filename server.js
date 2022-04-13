@@ -6,7 +6,7 @@ const args = minimist(process.argv.slice(2))
 
 //Port variable
 args['port']
-const port = args.port || process.env.PORT || 3000
+const port = args.port || process.env.PORT || 5000
 
 //Start an app server
 const server = app.listen(port, () => {
@@ -57,21 +57,6 @@ function flipACoin(call) {
     return full_result;
   }
 
-//Check endpoint
-app.get('/app', (req, res) => {
-    //Respond with status 200
-    res.statusCode = 200
-    //Respond with status message "OK"
-    res.statusMessage = 'OK'
-    res.writeHead(res.statusCode, {'Content-Type' : 'text/plain'})
-    res.end(res.endStatusCode + ' ' + res.statusMessage)
-})
-
-app.get('/app/echo/:number', (req, res) => {
-    var coinFlips = coinFlips(req.params.number)
-    var countFlips = countFlips(coinFlips)
-    res.status(200).json({ 'raw' : coinFlips, 'summary' : countFlips })
-})
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({ 'flip' : flip })
@@ -80,14 +65,31 @@ app.get('/app/flip', (req, res) => {
 
 app.get('/app/flip/call/heads', (req, res) => {
     var heads = flipACoin('heads')
-    res.status(200).json(heads)
+    res.status(200).json({ 'call' : heads.call, 'flip' : heads.flip, 'result' : heads.result })
     res.type('text/plain')
 })
 
 app.get('/app/flip/call/tails', (req, res) => {
     var tails = flipACoin('tails')
-    res.status(200).json(tails)
+    res.status(200).json({ 'call' : tails.call, 'flip' : tails.flip, 'result' : tails.result })
     res.type('text/plain')
+})
+
+app.get('/app/echo/:number', (req, res) => {
+    var coinFlips = coinFlips(req.params.number)
+    var countFlips = countFlips(coinFlips)
+    res.status(200).json({ 'raw' : coinFlips, 'summary' : countFlips })
+    res.type('text/plain')
+})
+
+//Check endpoint
+app.get('/app', (req, res) => {
+    //Respond with status 200
+    res.statusCode = 200
+    //Respond with status message "OK"
+    res.statusMessage = 'OK'
+    res.writeHead(res.statusCode, {'Content-Type' : 'text/plain'})
+    res.end(res.endStatusCode + ' ' + res.statusMessage)
 })
 
 //Default response for any other request (default endpoint)
