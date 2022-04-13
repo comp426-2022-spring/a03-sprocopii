@@ -2,10 +2,11 @@
 const express = require('express')
 const app = express()
 const minimist = require('minimist')
-const argv = minimist(process.argv.slice(2))
+const args = ("minimist")(process.argv.slice(2))
 
 //Port variable
-const port = argv["port"] || 5000
+args["port"]
+const port = args.port || process.env.PORT || 5000
 
 //Start an app server
 const server = app.listen(port, () => {
