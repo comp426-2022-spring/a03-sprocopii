@@ -13,6 +13,7 @@ const server = app.listen(port, () => {
     console.log(`App is running on port ${port}`)
 })
 
+//Functions used for flipping the coin
 function coinFlip() {
     return Math.random() > .5 ? ("heads") : ("tails");
   }
@@ -92,4 +93,5 @@ app.get('/app/flip/call/tails', (req, res) => {
 //Default response for any other request (default endpoint)
 app.use(function(req, res) {
     res.status(404).send('404 NOT FOUND')
+    res.type('text/plain')
 })
