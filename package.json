@@ -1,11 +1,10 @@
 {
   "name": "api",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Emulating a coinflip using Express.js",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node server.js --port=5555"
   },
   "repository": {
     "type": "git",

@@ -13,10 +13,48 @@ const server = app.listen(port, () => {
     console.log(`App is running on port ${port}`)
 })
 
-//Default response for any other request (default endpoint)
-app.use(function(req, res) {
-    res.status(404).send('404 NOT FOUND')
-})
+function coinFlip() {
+    return Math.random() > .5 ? ("heads") : ("tails");
+  }
+  
+function coinFlips(flips) {
+    const results = [];
+    for (let i = 0; i < flips; i++) {
+      results[i] = coinFlip();
+    }
+    return results;
+  }
+
+function countFlips(array) {
+    let tails = 0;
+    let heads = 0;
+    let results = "{ heads: " + heads + ", tails: " + tails + " }";
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] == "heads") {
+        heads = heads + 1;
+      }
+      if (array[i] == "tails") {
+        tails = tails + 1;
+      }
+    }
+    if (heads == 0) {
+      results = "{ tails: " + tails + " }";
+    }
+    if (tails == 0) {
+      results = "{ heads: " + heads + " }";
+    }
+    return results;
+  }
+  
+function flipACoin(call) {
+    let flip = coinFlip();
+    let result = "lose";
+    if (call == flip) {
+      result = "win";
+    }
+    const full_result = "{ call: '" + call + "', flip: '" + flip + "', result: '" + result + "' }";
+    return full_result;
+  }
 
 //Check endpoint
 app.get('/app/', (req, res) => {
@@ -26,4 +64,17 @@ app.get('/app/', (req, res) => {
     res.statusMessage = 'OK'
     res.writeHead(res.statusCode, {'Content-Type' : 'text/plain'})
     res.end(res.endStatusCode + ' ' + res.statusMessage)
-});
+})
+
+app.get('/app/echo/:number', (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
+})
+app.get('/app/flip', (req, res) => {
+    var flip = coinFlip()
+    res.status(200).json({ 'flip' : flip })
+})
+
+//Default response for any other request (default endpoint)
+app.use(function(req, res) {
+    res.status(404).send('404 NOT FOUND')
+})
