@@ -57,7 +57,7 @@ function flipACoin(call) {
   }
 
 //Check endpoint
-app.get('/app/', (req, res) => {
+app.get('/app', (req, res) => {
     //Respond with status 200
     res.statusCode = 200
     //Respond with status message "OK"
@@ -67,11 +67,26 @@ app.get('/app/', (req, res) => {
 })
 
 app.get('/app/echo/:number', (req, res) => {
-    res.status(200).json({ 'message': req.params.number })
+    var coinFlips = coinFlips(req.params.number)
+    var countFlips = countFlips(coinFlips)
+    res.status(200).json({ 'raw' : coinFlips, 'summary' : countFlips })
 })
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({ 'flip' : flip })
+    res.type('text/plain')
+})
+
+app.get('/app/flip/call/heads', (req, res) => {
+    var heads = flipACoin('heads')
+    res.status(200).json(heads)
+    res.type('text/plain')
+})
+
+app.get('/app/flip/call/tails', (req, res) => {
+    var tails = flipACoin('tails')
+    res.status(200).json(tails)
+    res.type('text/plain')
 })
 
 //Default response for any other request (default endpoint)
