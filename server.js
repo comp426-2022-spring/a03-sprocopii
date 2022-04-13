@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 const minimist = require('minimist')
-const args = ('minimist')(process.argv.slice(2))
+const args = minimist(process.argv.slice(2))
 
 //Port variable
 args['port']
