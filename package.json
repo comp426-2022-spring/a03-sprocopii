@@ -2,7 +2,7 @@
   "name": "api",
   "version": "0.0.1",
   "description": "Emulating a coinflip using Express.js",
-  "main": "server,js",
+  "main": "server.js",
   "scripts": {
     "test": "node server.js --port=5555"
   },
