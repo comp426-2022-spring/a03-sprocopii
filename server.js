@@ -9,7 +9,7 @@ const port = argv["port"] || 5000
 
 //Start an app server
 const server = app.listen(port, () => {
-    console.log('App is running on port %PORT%'.replace('%PORT%', port))
+    console.log(`App is running on port ${port}`)
 })
 
 //Default response for any other request (default endpoint)
@@ -18,7 +18,7 @@ app.use(function(req, res) {
 })
 
 //Check endpoint
-app.get('/app', (req, res) => {
+app.get('/app/', (req, res) => {
     //Respond with status 200
     res.statusCode = 200
     //Respond with status message "OK"
