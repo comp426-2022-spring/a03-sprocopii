@@ -80,10 +80,10 @@ function countFlips(array) {
     }
   }
   if (heads == 0) {
-    results = "{ tails: " + tails + " }";
+    results = {tails: tails};
   }
   if (tails == 0) {
-    results = "{ heads: " + heads + " }";
+    results = {heads: heads};
   }
   return results;
 }
