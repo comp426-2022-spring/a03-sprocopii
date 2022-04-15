@@ -53,8 +53,7 @@ function flipACoin(call) {
     if (call == flip) {
       result = "win";
     }
-    const full_result = "{ call: '" + call + "', flip: '" + flip + "', result: '" + result + "' }";
-    return full_result;
+    return {call: call, flip: flip, result: result};
   }
 
 app.get('/app/flip', (req, res) => {
