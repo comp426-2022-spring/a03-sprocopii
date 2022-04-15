@@ -70,7 +70,7 @@ function coinFlips(flips) {
 function countFlips(array) {
   let tails = 0;
   let heads = 0;
-  let results = "{ heads: " + heads + ", tails: " + tails + " }";
+  let results = {heads: heads, tails: tails};
   for (let i = 0; i < array.length; i++) {
     if (array[i] == "heads") {
       heads = heads + 1;
