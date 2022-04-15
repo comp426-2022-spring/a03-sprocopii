@@ -35,7 +35,7 @@ app.get('/app/flips/:number', (req, res) => {
     var coinFlipsResult = coinFlips(req.params.number)
     var countFlipsResult = countFlips(coinFlips)
     res.type('text/plain')
-    res.status(200).json({ 'raw' : coinFlipsResult, 'summary' : countFlipsResult })
+    res.status(200).json({'raw' : coinFlipsResult, 'summary' : countFlipsResult})
 })
 
 //Check endpoint
