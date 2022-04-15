@@ -59,27 +59,27 @@ function flipACoin(call) {
 
 app.get('/app/flip', (req, res) => {
     var flip = coinFlip()
-    res.status(200).json({ 'flip' : flip })
     res.type('text/plain')
+    res.status(200).json({ 'flip' : flip })
 })
 
 app.get('/app/flip/call/heads', (req, res) => {
     var heads = flipACoin('heads')
-    res.status(200).json({ 'call' : heads.call, 'flip' : heads.flip, 'result' : heads.result })
     res.type('text/plain')
+    res.status(200).json({ 'call' : heads.call, 'flip' : heads.flip, 'result' : heads.result })
 })
 
 app.get('/app/flip/call/tails', (req, res) => {
     var tails = flipACoin('tails')
-    res.status(200).json({ 'call' : tails.call, 'flip' : tails.flip, 'result' : tails.result })
     res.type('text/plain')
+    res.status(200).json({ 'call' : tails.call, 'flip' : tails.flip, 'result' : tails.result })
 })
 
 app.get('/app/echo/:number', (req, res) => {
     var coinFlips = coinFlips(req.params.number)
     var countFlips = countFlips(coinFlips)
-    res.status(200).json({ 'raw' : coinFlips, 'summary' : countFlips })
     res.type('text/plain')
+    res.status(200).json({ 'raw' : coinFlips, 'summary' : countFlips })
 })
 
 //Check endpoint
