@@ -74,7 +74,7 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json({ 'call' : tails.call, 'flip' : tails.flip, 'result' : tails.result })
 })
 
-app.get('/app/echo/:number', (req, res) => {
+app.get('/app/flips/:number', (req, res) => {
     var coinFlips = coinFlips(req.params.number)
     var countFlips = countFlips(coinFlips)
     res.type('text/plain')
